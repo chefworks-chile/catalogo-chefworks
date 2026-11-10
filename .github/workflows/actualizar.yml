@@ -20,7 +20,10 @@ jobs:
       - name: Instalar dependencias
         run: pip install requests beautifulsoup4 pillow
       - name: Leer chefworks.cl y generar catálogo
-        run: python scripts/build_site.py
+        run: |
+          mkdir -p scripts
+          cp update.py build_site.py head.html body.html logo.png logo-dark.png scripts/
+          python scripts/build_site.py
       - name: Publicar cambios
         run: |
           git config user.name "Actualizador catálogo"
