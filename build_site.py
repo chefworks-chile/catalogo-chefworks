@@ -25,4 +25,8 @@ open(os.path.join(REPO, 'index.html'), 'w', encoding='utf-8').write(doc)
 os.makedirs(os.path.join(REPO, 'img'), exist_ok=True)
 for f in os.listdir(os.path.join(W, 'pub', 'img')):
     shutil.copy(os.path.join(W, 'pub', 'img', f), os.path.join(REPO, 'img', f))
+for extra in ('portada.jpg', 'logo-white.png'):
+    for cand in (os.path.join(REPO, extra), os.path.join(SRC, extra)):
+        if os.path.exists(cand):
+            shutil.copy(cand, os.path.join(REPO, 'img', extra)); break
 print('Catálogo generado:', resumen.get('productos'), 'productos,', resumen.get('fecha'))
